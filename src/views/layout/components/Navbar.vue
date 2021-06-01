@@ -4,17 +4,19 @@
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
-        <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+        <img :src="'../../../src/img/addshop.png'" class="user-avatar">
+         <span>{{account}}</span> 
         <i class="el-icon-caret-bottom"/>
       </div>
+       
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
-            Home
+            主页
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span style="display:block;" @click="logout">LogOut</span>
+          <span style="display:block;" @click="logout">退出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -25,8 +27,15 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import { getToken } from '@/utils/auth' // 验权
+
 
 export default {
+  data() {
+    return {
+      account: getToken('account'),
+    }
+  },
   components: {
     Breadcrumb,
     Hamburger
@@ -74,12 +83,14 @@ export default {
     right: 35px;
     .avatar-wrapper {
       cursor: pointer;
-      margin-top: 5px;
+      margin-top: 0px;
       position: relative;
       .user-avatar {
         width: 40px;
         height: 40px;
         border-radius: 10px;
+        vertical-align: -webkit-baseline-middle;
+        vertical-align: middle
       }
       .el-icon-caret-bottom {
         position: absolute;

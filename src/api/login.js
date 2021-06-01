@@ -1,16 +1,26 @@
 import request from '@/utils/request'
 
-export function login(username, password) {
+export function login(account, password) {
   return request({
-    url: '/user/login',
+    url: '/login',
     method: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
     data: {
-      username,
+      account,
       password
-    }
+    },
+    transformRequest: [function (data) {
+      // Do whatever you want to transform the data
+      let ret = ''
+      for (let it in data) {
+        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+      }
+      return ret
+    }]
   })
 }
-
 export function getInfo(token) {
   return request({
     url: '/user/info',
@@ -19,9 +29,12 @@ export function getInfo(token) {
   })
 }
 
-export function logout() {
+export function logout(token) {
   return request({
-    url: '/user/logout',
-    method: 'post'
+    url: '/',
+    method: 'get',
+    headers: {
+      'Access-Token': token
+    }
   })
 }

@@ -1,14 +1,17 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">小鹿有哲后台系统</h3>
-      <el-form-item prop="username">
+      <div class="loginimgbox">
+        <img class="loginimg" src="../../img/xlyzlogin.png" alt="">  
+      </div> 
+      <h3 class="title">欢迎登录 小鹿有哲！</h3>
+      <el-form-item prop="username" class="logininput">
         <span class="svg-container svg-container_login">
           <svg-icon icon-class="user" />
         </span>
         <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
       </el-form-item>
-      <el-form-item prop="password">
+      <el-form-item prop="password" class="logininput">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
@@ -24,14 +27,14 @@
         </span>
       </el-form-item>
       <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          出发！
+        <el-button :loading="loading" class="login-button" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
+          登录！
         </el-button>
       </el-form-item>
-      <div class="tips">
+      <!-- <div class="tips">
         <span style="margin-right:20px;">账号: admin</span>
         <span> 密码: admin</span>
-      </div>
+      </div> -->
     </el-form>
   </div>
 </template>
@@ -43,7 +46,8 @@ export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
+      // if (!isvalidUsername(value)) {
+      if (value=='') {
         callback(new Error('请输入正确的用户名'))
       } else {
         callback()
@@ -58,8 +62,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: 'admin'
+        username: '猪猪侠',
+        password: '123456'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -92,11 +96,20 @@ export default {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
+            //  this.$message({
+            //   message: '登录成功，小鹿有哲欢迎您',
+            //   type: 'success'
+            // });
+             this.$notify({
+              title: '登录成功',
+              message: '小鹿有哲欢迎您',
+              type: 'success'
+            });
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
             this.loading = false
           })
-        } else {
+        }else{
           console.log('error submit!!')
           return false
         }
@@ -107,7 +120,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
+$bg:#fff;
 $light_gray:#eee;
 
 /* reset element-ui css */
@@ -122,7 +135,7 @@ $light_gray:#eee;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
+      color: #000;
       height: 47px;
       &:-webkit-autofill {
        box-shadow: 0 0 0px 1000px $bg inset !important;
@@ -141,7 +154,7 @@ $light_gray:#eee;
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
+$bg:#fff;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 .login-container {
@@ -149,6 +162,7 @@ $light_gray:#eee;
   height: 100%;
   width: 100%;
   background-color: $bg;
+ background:url(../../img/login.jpg);
   .login-form {
     position: absolute;
     left: 0;
@@ -179,12 +193,13 @@ $light_gray:#eee;
     }
   }
   .title {
-    font-size: 26px;
+    font-size: 16px;
     font-weight: 400;
-    color: $light_gray;
+    color:#2dd0cf;
     margin: 0px auto 40px auto;
     text-align: center;
     font-weight: bold;
+
   }
   .show-pwd {
     position: absolute;
@@ -195,5 +210,20 @@ $light_gray:#eee;
     cursor: pointer;
     user-select: none;
   }
+}
+.loginimg{
+   margin: auto
+}
+.loginimgbox{
+      text-align: center;
+      margin-bottom:20px;
+      margin-top:50px
+}
+.logininput{
+      background:#fff;
+}
+.login-button{
+   background:#00CCCB;
+   border:1px #2dd0cf solid
 }
 </style>

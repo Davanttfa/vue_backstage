@@ -7,24 +7,33 @@ import { getToken } from '@/utils/auth' // 验权
 
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
+  // next({ path: '/' })
   NProgress.start()
-  if (getToken()) {
+  if (getToken('Token')) {
     if (to.path === '/login') {
       next({ path: '/' })
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
-      if (store.getters.roles.length === 0) {
-        store.dispatch('GetInfo').then(res => { // 拉取用户信息
-          next()
-        }).catch((err) => {
-          store.dispatch('FedLogOut').then(() => {
-            Message.error(err || 'Verification failed, please login again')
-            next({ path: '/' })
-          })
-        })
-      } else {
-        next()
-      }
+      next()
+      // if (store.getters.roles.length === 0) {
+      //   // next({ path: '/' })
+      //   // next()
+      //     //  store.dispatch('FedLogOut').then(() => {
+      //     //            Message.error('Verification failed, please login again')
+      //     //            next({ path: '/' })
+      //     //          })
+      //   // store.dispatch('GetInfo').then(res => { // 拉取用户信息
+      //   //   console.log(1)
+      //   //   next()
+      //   // }).catch((err) => {
+      //   //   store.dispatch('FedLogOut').then(() => {
+      //   //     Message.error(err || 'Verification failed, please login again')
+      //   //     next({ path: '/' })
+      //   //   })
+      //   // })
+      // } else {
+      //   next()
+      // }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
