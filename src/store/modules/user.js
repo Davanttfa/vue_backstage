@@ -16,7 +16,9 @@ const user = {
     avatar: '',
     roles: [],
     proxyId: getToken('proxyId'),
-    account:getToken('account')
+    account:getToken('account'),
+    userType:getToken('userType'),
+    userId:getToken('userId')
   },
 
   mutations: {
@@ -34,7 +36,13 @@ const user = {
     },
     SET_proxyId: (state, proxyId) => {
       state.proxyId = proxyId
-    }
+    },
+    SET_userTyped: (state, userType) => {
+        state.userType = userType
+      },
+      SET_userId: (state, userId) => {
+        state.userId = userId
+      }
   },
 
   actions: {
@@ -51,12 +59,14 @@ const user = {
           setToken('Token', data.accessToken)
           setToken('proxyId', data.proxyId)
           setToken('account', data.account)
-
+          setToken('userType', data.userType)
+          setToken('userId', data.userId)
 
           
-
           commit('SET_TOKEN', data.accessToken)
           commit('SET_proxyId', data.proxyId)
+          commit('SET_userTyped', data.userType)
+          commit('SET_userId', data.userId)
 
           resolve()
         }).catch(error => {

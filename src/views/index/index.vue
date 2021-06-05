@@ -1,236 +1,221 @@
 <template >
-   <div class="cdlbox index">
-      <el-row :gutter="40"  >
-        <el-col :span="12">
-          <!-- 首页轮播 -->
-          <div class="grid-content bg-purple indextopleft">
-            <el-carousel  :interval="3500"  height="250px" >
-              <el-carousel-item v-for="item in imgitems" :key="item">
-                <img class="indexbanner" :src="item" alt="">
-              </el-carousel-item>
-            </el-carousel>
-          </div>
-          <!-- 首页快速入口 -->
-          <div class="indextopleftcen">
-             <el-row class="indexcentre" :gutter="30">
-              <el-col :span="12">
-                 <router-link to="/card">
-                <div class="grid-content indexcjbnr">
-                    <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
-                        <img src="../../img/iconindex4.png" alt="">
-                    </el-col>
-                   <el-col :span="14">
-                      <div class="indexztitle">台卡管理</div>
-                      <div class="indexztitle1">查看台卡达标记录</div>
-                  </el-col>
+    <div class="cdlbox index">
+        <el-row :gutter="40">
+            <el-col :span="12">
+                <!-- 首页轮播 -->
+                <div class="grid-content bg-purple indextopleft">
+                    <el-carousel :interval="3500" height="250px">
+                        <el-carousel-item v-for="item in imgitems" :key="item">
+                            <img class="indexbanner" :src="item" alt="">
+                        </el-carousel-item>
+                    </el-carousel>
                 </div>
-                 </router-link>
-              </el-col>
-              <el-col :span="12" ><div class="grid-content indexcjbnr">
-                 <router-link to="/shop/">
-                 <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
-                        <img src="../../img/iconindex3.png" alt="">
-                    </el-col>
-                   <el-col :span="14">
-                      <div class="indexztitle">邀请商户</div>
-                      <div class="indexztitle1">点击立即邀请商户</div>
-                  </el-col>
-                 </router-link>
-                </div>
-                
-                </el-col>
-            </el-row>
-          </div>
-          <!-- 台卡总览 -->
-          <div class="taikazonglna"> 
-              <div class="listboxtop">
-                台卡总览
-              </div>
-              <el-row class="listboxcon">
-            <el-col :span="6" v-for="(item,key) in carditem" :key=key >
-              <div class="grid-content ">
-                   <div class="inxajaxsj">
-                     <count-to :startVal='0' :endVal=item.sj :duration=4000></count-to>
-                     </div>  
-                     <div class="ajaxsjbt">
-                     {{item.name}}
-                     </div>   
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content ">
-              </div>
-            </el-col>
-          </el-row>
-          </div>
-          <!-- 待办事件 -->
-          <div class="taikazonglna"> 
-              <div class="listboxtop">
-                待办事件
-              </div>
-              <el-row class="listboxcon">
-            <el-col :span="6" v-for="(item,key) in waiting" :key=key >
-              <div class="grid-content ">
-                   <div class="inxajaxsj">
-                     <count-to :startVal='0' :endVal=item.sj :duration=4000></count-to>
-                     </div>  
-                     <div class="ajaxsjbt">
-                     {{item.name}}
-                     </div>   
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content ">
-              </div>
-            </el-col>
-          </el-row>
-          </div>
-        </el-col>
-        <el-col :span="12" class="indextop-right">
-          <div class="grid-content bg-purple-light">
-            <el-row :gutter="20">
-              <el-col :span="12"><div class="grid-content bg-purple">
-                <div class="bg-purpledix">  
-                      <div class="index-nuwstop">
-                        公告
-                      </div>
-                      <div class="gonggaotext">
-                        {{indexnews}}
-                      </div>
-                      </div>
-                </div>
-              </el-col>
-              <el-col :span="12"><div class="grid-content bg-purple-light" >
-                <div class="bg-purple-lightdiv">
-                    <div class="index-nuwstop" >
-                  客服
-                </div>
-                <div class="gonggaotext">
-                  <el-row>
-                    <el-col :span="10" style="text-align: center;"><div class="grid-content bg-purple">
-                          <img class="indexkefu" src="../../img/inconkefu.png" alt="">
-                          <div class="" style="margin-top: 20px;">联系客服</div>
-                      </div></el-col>
-                    <el-col :span="14" ><div class="grid-content bg-purple-light" style="text-align: center;">
-                        <div title="周一至周五早9：00 - 晚18:00" class="cjbindex-right1">联系电话:8768999</div>
-                        <div class="cjbindex-right1">客服微信:deeryzcs</div>
-                        <div style="text-align:right;margin-top:15px;">
-                          <span class="cjbindex-right2">加微信联系我呦</span>
-                          </div> 
-                      </div></el-col>
-                  </el-row>
-                  
-                </div>
-                </div>
-                </div> 
-              </el-col>
-            </el-row>
-          </div>
-          <div class="indextopleftcen">
-             <el-row class="indexcentre" :gutter="30">
-              <el-col :span="12">
-                 <router-link to="/shop/table">
-                <div class="grid-content indexcjbnr">
-                    <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
-                        <img src="../../img/iconindex2.png" alt="">
-                    </el-col>
-                   <el-col :span="14">
-                      <div class="indexztitle">商户管理</div>
-                      <div class="indexztitle1">查看商户信息</div>
-                  </el-col>
-                </div>
-                </router-link>
-              </el-col>
-              <el-col :span="12" >
-                 <router-link to="/">
-                <div class="grid-content indexcjbnr">
-                 <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
-                        <img src="../../img/iconindex1.png" alt="">
-                    </el-col>
-                   <el-col :span="14">
-                      <div class="indexztitle">业务员管理</div>
-                      <div class="indexztitle1">查看业务员业绩</div>
-                  </el-col>
-                </div>
-                 </router-link>
-                </el-col>
-            </el-row>
-          </div>
-          <div class="indextable">
-                  <div class="listboxtop">
-                    台卡离线超时报警
-                  </div>
-                  <div class="listtable">
-                      <el-table
-                      id="table"
-                      ref="multipleTable"
-                      border
-                      :data="tableData3"
-                      tooltip-effect="dark"
-                      style="width: 100%"
-                      :default-sort = "{prop: 'date', order: 'descending'}" >
-                      <el-table-column
-                        prop="shopName"
-                        label="门店名称"
-                      >
-                      <template slot-scope="scope" >
-                        <div>
-                        {{ scope.row.shopName }}
-                        </div>
-                        </template>
-                      </el-table-column>
-                      <el-table-column
-                        prop="offAlertNumber"
-                        label="离线超48小时"
-                      >
-                      <template slot-scope="scope" >
-                        <div>
-                        <count-to :startVal='0' :endVal=scope.row.offAlertNumber :duration=4000></count-to>
-                        </div>
-                        </template>
-                      </el-table-column>
-                      <el-table-column
-                        prop="cardNumber"
-                        label="已绑定台数"
-                        >
-                        <template slot-scope="scope" >
-                        <div>
-                        <count-to :startVal='0' :endVal=scope.row.cardNumber :duration=4000></count-to>
-                        </div>
-                        </template>
-                      </el-table-column>
-                    </el-table>
-                    <div class="block" style="margin-top: 30px;">
-                      <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page.sync="pageNumbercs"
-                        :page-sizes="pageSizesList"
-                        :page-size="ajaxdata.pageSize"
-                        layout="total, sizes, prev, pager, next, jumper"
-                          :total="totalDataNumber">
-                      </el-pagination>
-                    </div>
-                     </div>
-                          </div>
-                          </el-col>
+                <!-- 首页快速入口 -->
+                <div class="indextopleftcen">
+                    <el-row class="indexcentre" :gutter="30">
+                        <el-col :span="12">
+                            <router-link to="/card">
+                                <div class="grid-content indexcjbnr">
+                                    <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
+                                        <img src="../../img/iconindex4.png" alt="">
+                                    </el-col>
+                                    <el-col :span="14">
+                                        <div class="indexztitle">台卡管理</div>
+                                        <div class="indexztitle1">查看台卡达标记录</div>
+                                    </el-col>
+                                </div>
+                            </router-link>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="grid-content indexcjbnr">
+                                <router-link to="/shop/">
+                                    <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
+                                        <img src="../../img/iconindex3.png" alt="">
+                                    </el-col>
+                                    <el-col :span="14">
+                                        <div class="indexztitle">邀请商户</div>
+                                        <div class="indexztitle1">点击立即邀请商户</div>
+                                    </el-col>
+                                </router-link>
+                            </div>
+
+                        </el-col>
                     </el-row>
-                  </div>
+                </div>
+                <!-- 台卡总览 -->
+                <div class="taikazonglna">
+                    <div class="listboxtop">
+                        台卡总览
+                    </div>
+                    <el-row class="listboxcon">
+                        <el-col :span="6" v-for="(item,key) in carditem" :key=key>
+                            <div class="grid-content ">
+                                <div class="inxajaxsj">
+                                    <count-to :startVal='0' :endVal=item.sj :duration=4000></count-to>
+                                </div>
+                                <div class="ajaxsjbt">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="grid-content ">
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+                <!-- 待办事件 -->
+                <div class="taikazonglna">
+                    <div class="listboxtop">
+                        待办事件
+                    </div>
+                    <el-row class="listboxcon">
+                        <el-col :span="6" v-for="(item,key) in waiting" :key=key>
+                            <div class="grid-content ">
+                                <div class="inxajaxsj">
+                                    <count-to :startVal='0' :endVal=item.sj :duration=4000></count-to>
+                                </div>
+                                <div class="ajaxsjbt">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="grid-content ">
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+            </el-col>
+            <el-col :span="12" class="indextop-right">
+                <div class="grid-content bg-purple-light">
+                    <el-row :gutter="20">
+                        <el-col :span="12">
+                            <div class="grid-content bg-purple">
+                                <div class="bg-purpledix">
+                                    <div class="index-nuwstop">
+                                        公告
+                                    </div>
+                                    <div class="gonggaotext">
+                                        {{indexnews}}
+                                    </div>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="grid-content bg-purple-light">
+                                <div class="bg-purple-lightdiv">
+                                    <div class="index-nuwstop">
+                                        客服
+                                    </div>
+                                    <div class="gonggaotext">
+                                        <el-row>
+                                            <el-col :span="10" style="text-align: center;">
+                                                <div class="grid-content bg-purple">
+                                                    <img class="indexkefu" src="../../img/inconkefu.png" alt="">
+                                                    <div class="" style="margin-top: 20px;">联系客服</div>
+                                                </div>
+                                            </el-col>
+                                            <el-col :span="14">
+                                                <div class="grid-content bg-purple-light" style="text-align: center;">
+                                                    <div title="周一至周五早9：00 - 晚18:00" class="cjbindex-right1">联系电话:8768999</div>
+                                                    <div class="cjbindex-right1">客服微信:deeryzcs</div>
+                                                    <div style="text-align:right;margin-top:15px;">
+                                                        <span class="cjbindex-right2">加微信联系我呦</span>
+                                                    </div>
+                                                </div>
+                                            </el-col>
+                                        </el-row>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+                <div class="indextopleftcen">
+                    <el-row class="indexcentre" :gutter="30">
+                        <el-col :span="12">
+                            <router-link to="/shop/table">
+                                <div class="grid-content indexcjbnr">
+                                    <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
+                                        <img src="../../img/iconindex2.png" alt="">
+                                    </el-col>
+                                    <el-col :span="14">
+                                        <div class="indexztitle">商户管理</div>
+                                        <div class="indexztitle1">查看商户信息</div>
+                                    </el-col>
+                                </div>
+                            </router-link>
+                        </el-col>
+                        <el-col :span="12">
+                            <router-link to="/">
+                                <div class="grid-content indexcjbnr">
+                                    <el-col :span="10" style="margin-top: 25px;border-right: 1px solid #e8f2f3;">
+                                        <img src="../../img/iconindex1.png" alt="">
+                                    </el-col>
+                                    <el-col :span="14">
+                                        <div class="indexztitle">业务员管理</div>
+                                        <div class="indexztitle1">查看业务员业绩</div>
+                                    </el-col>
+                                </div>
+                            </router-link>
+                        </el-col>
+                    </el-row>
+                </div>
+                <div class="indextable">
+                    <div class="listboxtop">
+                        台卡离线超时报警
+                    </div>
+                    <div class="listtable">
+                        <el-table id="table" ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 100%" :default-sort="{prop: 'date', order: 'descending'}">
+                            <el-table-column prop="shopName" label="门店名称">
+                                <template slot-scope="scope">
+                                    <div>
+                                        {{ scope.row.shopName }}
+                                    </div>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="offAlertNumber" label="离线超48小时">
+                                <template slot-scope="scope">
+                                    <div>
+                                        <count-to :startVal='0' :endVal=scope.row.offAlertNumber :duration=4000></count-to>
+                                    </div>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="cardNumber" label="已绑定台数">
+                                <template slot-scope="scope">
+                                    <div>
+                                        <count-to :startVal='0' :endVal=scope.row.cardNumber :duration=4000></count-to>
+                                    </div>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div class="block" style="margin-top: 30px;">
+                            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="pageNumbercs" :page-sizes="pageSizesList" :page-size="ajaxdata.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="totalDataNumber">
+                            </el-pagination>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <script>
-import { indexdata,indextable } from "@/api/api";
+import { indexdata, indextable } from "@/api/api";
 import countTo from "vue-count-to";
 
 export default {
   data() {
     return {
-      pageNumbercs: 0,//初始页码
-      pageSize: 5,//初始分页数量
-      pageSizesList: [5],//一页多少数据
-      totalDataNumber: 0,//总数据
-      ajaxdata: {// 请求数据的申请
-        proxyId:'',
+      pageNumbercs: 0, //初始页码
+      pageSize: 5, //初始分页数量
+      pageSizesList: [5], //一页多少数据
+      totalDataNumber: 0, //总数据
+      ajaxdata: {
+        // 请求数据的申请
+        proxyId: "",
         pageSize: 5,
         pageNumber: 0
       },
@@ -300,7 +285,7 @@ export default {
         .then(response => {
           this.tableData3 = response.data.rows;
           this.totalDataNumber = response.data.total;
-          console.log( response.data.total);
+          console.log(response.data.total);
         })
         .catch(response => {
           console.log(response);
@@ -310,9 +295,9 @@ export default {
   },
   mounted: function() {
     console.log(this.$route.query.id);
-    
-    this.ajaxdata.proxyId=this.$store.state.user.proxyId
-    this.table() 
+
+    this.ajaxdata.proxyId = this.$store.state.user.proxyId;
+    this.table();
     //挂载结束状态
     let _json = {
       proxyId: 150
@@ -330,8 +315,8 @@ export default {
         this.waiting[2].sj = data.maintainWaitCount; //待维护工单
         this.waiting[3].sj = data.cardRecoveryReviewCount; //待回收台卡
       })
-      .catch(response => {
-        console.log(response);
+      .catch(r => {
+        this.$message.error("服务器出错");
       });
   }
 };
@@ -483,11 +468,11 @@ export default {
     overflow: hidden;
     height: 440px;
     background-color: #fff;
-    .listtable{
-      padding:5px 15px 0px 15px;
+    .listtable {
+      padding: 5px 15px 0px 15px;
       text-align: center;
-      .cell{
-        text-align: center
+      .cell {
+        text-align: center;
       }
     }
   }

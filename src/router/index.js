@@ -5,7 +5,6 @@ import Router from 'vue-router'
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
 
 Vue.use(Router)
-
 /* Layout */
 import Layout from '../views/layout/Layout'
 
@@ -77,9 +76,9 @@ export const constantRouterMap = [{
         }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
+        path: 'audit',
+        name: 'audit',
+        component: () => import('@/views/shop/shopaudit'),
         meta: {
           title: '门店审核',
           icon: 'tree'
@@ -87,168 +86,192 @@ export const constantRouterMap = [{
       }
     ]
   },
-   {
-     path: '/card',
-     component: Layout,
-     redirect: '/card/index',
-     name: 'card',
-     meta: {
-       title: '台卡管理',
-       icon: 'example'
-     },
-     children: [{
-         path: 'index',
-         name: 'index',
-         component: () =>
-           import('@/views/dashboard/index'),
-         meta: {
-           title: '数据总览',
-           icon: 'table'
-         }
-       },
-       {
-         path: 'table',
-         name: 'Table',
-         component: () => import('@/views/table/index'),
-         meta: {
-           title: '达标记录',
-           icon: 'table'
-         }
-       },
-       {
-         path: 'tree',
-         name: 'Tree',
-         component: () => import('@/views/tree/index'),
-         meta: {
-           title: '台卡管理',
-           icon: 'tree'
-         }
-       },
-        {
-          path: 'avfd',
-          name: 'avfd',
-          component: () => import('@/views/tree/index'),
-          meta: {
-            title: '定时设置',
-            icon: 'tree'
-          }
-        }
-     ]
-   },
   {
     path: '/card',
     component: Layout,
-    children: [{
-      path: 'index',
-      name: 'add',
-      component: () => import('@/views/form/index'),
-      meta: {
-        title: '台卡管理',
-        icon: 'form'
-      }
-    }]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [{
-      path: 'index',
-      name: 'Form',
-      component: () => import('@/views/form/index'),
-      meta: {
-        title: 'Form',
-        icon: 'form'
-      }
-    }]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
+    redirect: '/card/index',
+    name: 'card',
     meta: {
-      title: 'nested',
-      icon: 'nested'
+      title: '台卡管理',
+      icon: 'example'
     },
     children: [{
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
+        path: 'index',
+        name: 'index',
+        component: () =>
+          import('@/views/card/index'),
         meta: {
-          title: 'menu1'
+          title: '数据总览',
+          icon: 'table'
+        }
+      },
+      {
+        path: 'standard',
+        name: 'standard',
+        redirect: '/card/standard/standardtable1',
+        // alwaysShow: true,
+        component: () => import('@/views/card/standard'),
+        meta: {
+          title: '达标记录',
+          icon: 'table'
         },
         children: [{
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
+            path: 'standardtable1',
+            name: 'standardtable1',
+            component: () =>
+              import('@/views/card/standardtable1'),
             meta: {
-              title: 'menu1-1'
+              title: '报表查看',
+              icon: 'table'
             }
           },
           {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
+            path: 'standardtable2',
+            name: 'standardtable2',
+            alwaysShow: true,
+            component: () =>
+              import('@/views/card/standardtable2'),
             meta: {
-              title: 'menu1-2'
-            },
-            children: [{
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: {
-                  title: 'menu1-2-1'
-                }
-              },
-              {
-                path: 'fileUpload',
-                component: () => import('@/views/dashboard/132'),
-                name: 'fileUpload',
-                meta: {
-                  title: 'fileUpload'
-                }
-              }
-            ]
+              title: '记录查看',
+              icon: 'table'
+            }
           },
           {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
+            path: 'history',
+            component: () => import('@/views/card/history'),
+            name: 'history',
+            hidden: true,
             meta: {
-              title: 'menu1-3'
+              title: '历史记录',
+              icon: 'icon'
+            }
+          },
+          {
+            path: 'reachxq',
+            name: 'reachxq',
+            hidden: true,
+            component: () =>
+              import('@/views/card/reachxq'),
+            meta: {
+              title: '达标记录详情',
             }
           }
         ]
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
+        path: 'cardmanage',
+        name: 'cardmanage',
+        component: () => import('@/views/card/cardmanage'),
         meta: {
-          title: 'menu2'
+          title: '台卡管理',
+          icon: 'tree'
+        }
+      },
+      {
+        path: 'timing',
+        name: 'timing',
+        component: () => import('@/views/card/timing'),
+        meta: {
+          title: '定时设置',
+          icon: 'tree'
+        }
+      },
+      {
+        path: 'carddetails',
+        name: 'carddetails',
+        component: () => import('@/views/card/carddetails'),
+        hidden: true,
+        meta: {
+          title: '',
+          icon: 'tree'
+        }
+      }
+
+    ]
+  },
+  {
+    path: '/ops',
+    component: Layout,
+    redirect: '/ops/wordorder',
+    name: 'ops',
+    meta: {
+      title: '运维管理',
+      icon: 'nested'
+    },
+    children: [{
+        path: '/ops/wordorder',
+        component: () => import('@/views/ops/wordorder'),
+        name: 'wordorder',
+        meta: {
+          title: '工单管理'
+        }
+      },
+      {
+        path: '/ops/recycle',
+        component: () => import('@/views/ops/recycle'),
+        name: 'recycle',
+        meta: {
+          title: '回收管理'
         }
       }
     ]
   },
-  
+  {
+    path: '/accountmanage',
+    component: Layout,
+    redirect: '/accountmanage/index',
+    name: 'accountmanage',
+    meta: {
+      title: '业务员管理',
+      icon: 'example'
+    },
+    children: [{
+      path: 'index',
+      name: 'index',
+      component: () =>
+        import('@/views/accountmanage/index'),
+      meta: {
+        title: '业务员管理',
+        icon: 'table'
+      }
+    }, ]
+  },
   {
     path: 'external-link',
     component: Layout,
     children: [{
       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
       meta: {
-        title: 'externalLink',
+        title: '分红管理',
         icon: 'link'
       }
     }]
   },
-
   {
     path: '*',
     redirect: '/404',
     hidden: true
-  }
+  },
+  //   {
+  //     path: '/card/standard/standardtable2/',
+  //     component: Layout,
+  //     redirect: '/card/standard/standardtable2',
+  //     name: 'reachxq',
+  //     hidden: true,
+  //     meta: {
+  //       title: '记录查看',
+  //     },
+  //     children: [{
+  //       path: 'reachxq',
+  //       name: 'reachxq',
+  //       hidden: true,
+  //       component: () =>
+  //         import('@/views/card/reachxq'),
+  //       meta: {
+  //         title: '达标记录详情',
+  //       }
+  //     }, ]
+  //   }
 ]
 
 export default new Router({

@@ -199,7 +199,7 @@ export default {
               message: "编辑成功",
               type: "success"
             });
-             this.table()
+            this.table();
             this.dialogVisible = false;
           } else {
             this.$notify.error({
@@ -246,12 +246,13 @@ export default {
             }
           })
           .catch(r => {
-            console.log(r);
+            this.$message.error("服务器出错");
           });
       }
     },
     shopurlClick(id, name, shopname) {
       //台卡绑定弹窗显示
+      this.formLabelAlign.macbd = "";
       this.shopidmacbd = id;
       this.formLabelAlign.name = name;
       this.formLabelAlign.shopname = shopname;
@@ -260,9 +261,8 @@ export default {
         .then(r => {
           console.log(r);
           if (r.data.success == true) {
-              this.formLabelAlign.onbd=r.data.data.unbindNumber
-              this.formLabelAlign.inbd=r.data.data.bindCount
-
+            this.formLabelAlign.onbd = r.data.data.unbindNumber;
+            this.formLabelAlign.inbd = r.data.data.bindCount;
           } else {
             this.$notify.error({
               title: "失败",
@@ -310,7 +310,6 @@ export default {
       console.log(`每页 ${val} 条`);
       this.pageSize = val;
       this.ajaxdata.pageSize = val;
-      this.ajaxdata.pageNumber = val * this.pageNumbercs;
       this.table();
     },
     handleCurrentChange(val) {
@@ -327,8 +326,8 @@ export default {
           this.tableData3 = response.data.rows;
           this.totalDataNumber = response.data.total;
         })
-        .catch(response => {
-          console.log(response);
+        .catch(r => {
+          this.$message.error("服务器出错");
         });
     }
     //方法

@@ -21,7 +21,7 @@ html {
   box-sizing: border-box;
 }
 
-#app{
+#app {
   height: 100%;
 }
 
@@ -40,9 +40,9 @@ a:hover {
   text-decoration: none;
 }
 
-div:focus{
+div:focus {
   outline: none;
- }
+}
 
 a:focus,
 a:active {
@@ -69,103 +69,142 @@ a:hover {
 }
 
 //main-container全局样式
-.app-main{
+.app-main {
   min-height: 100%
 }
 
 .app-container {
   padding: 20px;
 }
-.cdlbox{
-   padding: 20px;
-   background-color: #e8f2f3
+
+.cdlbox {
+  padding: 20px;
+  background-color: #e8f2f3
 }
-.navbar{
-   padding-left: 10px;
-   padding-right: 10px;
-   z-index: 1;
-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05),
-0 1px 0 rgba(0, 0, 0, 0.05);
-border-bottom: none !important;
+
+.navbar {
+  padding-left: 10px;
+  padding-right: 10px;
+  z-index: 1;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05),
+    0 1px 0 rgba(0, 0, 0, 0.05);
+  border-bottom: none !important;
 }
-.cell{
+
+.cell {
   text-align: center;
 }
-.caozuo{
+
+.caozuo {
   color: #00cccb;
-    cursor: pointer;
+  cursor: pointer;
 }
-.topcss{
+
+.topcss {
   background: #fff;
   height: 130px;
 }
-.topcss-top{
+
+.topcss-top {
   height: 60px;
   border-bottom: 1px solid #e8f2f3;
   line-height: 60px;
   padding: 0 0 0 20px;
   font-size: 16px;
 }
-.topcss-cen{
+
+.topcss-cen {
   height: 70px;
   line-height: 70px;
   padding-left: 20px;
-  font-size:13px;
+  font-size: 13px;
   font-weight: bold;
 }
-.topinputcss{
- width:  160px;
- margin-left: 10px;
- margin-right: 20px;
+
+.el-range-editor--medium.el-input__inner {
+  width: 280px
 }
-.toptimecss{
+
+.topinputcss {
+  width: 160px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.toptimecss {
   // width: 300px;
   display: inline-block;
   margin-left: 10px;
- margin-right: 20px;
+  margin-right: 20px;
 }
-.el-date-editor .el-range-separator{
+
+.el-date-editor .el-range-separator {
   width: 20px;
 }
-.searchbut{
+
+.searchbut {
   float: right;
   margin-top: 16px;
   margin-right: 20px;
 }
-.listtablebox{
+
+.listtablebox {
   margin-top: 20px;
   background: #fff;
   min-height: 300px;
   padding: 0px 20px 20px 20px;
-   .ADOrdDet_head {
+
+  .ADOrdDet_head {
     height: 50px;
     line-height: 50px;
   }
 }
-.tableboxlistcss{
+
+.tableboxlistcss {
   padding-top: 10px;
 }
-.buttonxl:hover{
-    background-color: #00CCCB;
-    color: #ffffff;
-    border: 1px #00cccb solid;
+
+.buttonxl:hover {
+  background-color: #00CCCB;
+  color: #ffffff;
+  border: 1px #00cccb solid;
 }
-.buttonxl{
-    background-color: #00CCCB;
-    color: #ffffff;
-    border: 1px #00cccb solid;
-    margin-top: 5px
+
+.buttonxl {
+  background-color: #00CCCB;
+  color: #ffffff;
+  border: 1px #00cccb solid;
+  margin-top: 5px
 }
-.el-dialog__title{
-    font-size: 14PX;
-    font-weight: bold
+
+.el-dialog__title {
+  font-size: 14PX;
+  font-weight: bold
 }
-.selectright{
-    width: 85%;
+
+.selectright {
+  width: 85%;
 }
-.selectleft{
-    // width: 20%;
-    // text-align: right;
-    margin-right: 10px;
-    display: inline-block
+
+.selectleft {
+  // width: 20%;
+  // text-align: right;
+  margin-right: 10px;
+  display: inline-block
+}
+
+.reviewStatus {
+  color: red
+}
+
+.caozuo2 {
+  color: red
+}
+
+.caozuo1 {
+  color: #00CCCB
+}
+
+.el-pagination {
+  text-align: right
 }
