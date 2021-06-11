@@ -8,7 +8,10 @@ import {
   setToken,
   removeToken
 } from '@/utils/auth'
-
+import {
+  Message,
+  Notification
+} from 'element-ui'
 const user = {
   state: {
     token: getToken('Token'),
@@ -16,9 +19,10 @@ const user = {
     avatar: '',
     roles: [],
     proxyId: getToken('proxyId'),
-    account:getToken('account'),
-    userType:getToken('userType'),
-    userId:getToken('userId')
+    account: getToken('account'),
+    userType: getToken('userType'),
+    userId: getToken('userId'),
+    resourceIds: getToken('resourceIds')
   },
 
   mutations: {
@@ -38,11 +42,14 @@ const user = {
       state.proxyId = proxyId
     },
     SET_userTyped: (state, userType) => {
-        state.userType = userType
-      },
-      SET_userId: (state, userId) => {
-        state.userId = userId
-      }
+      state.userType = userType
+    },
+    SET_userId: (state, userId) => {
+      state.userId = userId
+    },
+    SET_resourceIds: (state, resourceIds) => {
+      state.resourceIds = resourceIds
+    }
   },
 
   actions: {
@@ -53,22 +60,36 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
-          const data = response.data.data
-          console.log(data);
-          
-          setToken('Token', data.accessToken)
-          setToken('proxyId', data.proxyId)
-          setToken('account', data.account)
-          setToken('userType', data.userType)
-          setToken('userId', data.userId)
+          var data = response.data.data
+          console.log(response);
+          if (response.data.success == true) {
+            Notification({
+              title: "登录成功",
+              message: '小鹿有哲欢迎您',
+              type: 'success'
+            });
+            setToken('Token', data.accessToken)
+            setToken('proxyId', data.proxyId)
+            setToken('account', data.account)
+            setToken('userType', data.userType)
+            setToken('userId', data.userId)
+            setToken('resourceIds', data.resourceIds)
+            commit('SET_TOKEN', data.accessToken)
+            commit('SET_proxyId', data.proxyId)
+            commit('SET_userTyped', data.userType)
+            commit('SET_userId', data.userId)
+            commit('SET_resourceIds', data.resourceIds)
 
-          
-          commit('SET_TOKEN', data.accessToken)
-          commit('SET_proxyId', data.proxyId)
-          commit('SET_userTyped', data.userType)
-          commit('SET_userId', data.userId)
+            resolve()
+          } else {
+            Notification({
+              title: '错误',
+              message: response.data.message.description,
+              type: 'error'
+            });
+            resolve()
+          }
 
-          resolve()
         }).catch(error => {
           reject(error)
         })
@@ -107,7 +128,7 @@ const user = {
           console.log("退出成功")
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
-           removeToken('Token')
+          removeToken('Token')
           resolve()
         }).catch(error => {
           console.log("退出失败")

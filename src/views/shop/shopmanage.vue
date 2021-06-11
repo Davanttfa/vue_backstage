@@ -184,6 +184,7 @@ export default {
   methods: {
     urlgo(shopid) {
       //查看详情页面跳转
+      this.$router.push({ path: "/shop/shopmanagexq?id=" + shopid });
     },
     selectchange() {
       //编辑负责人

@@ -13,6 +13,9 @@ import VueClipboard from 'vue-clipboard2'
 import '@/icons' // icon
 import '@/permission' // permission control
 import moment from 'moment'
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
+Vue.use(preview)
 Vue.use(VueClipboard)
 Vue.use(ElementUI, {
   locale

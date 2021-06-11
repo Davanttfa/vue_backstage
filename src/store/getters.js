@@ -7,6 +7,7 @@ const getters = {
   roles: state => state.user.roles,
   proxyId: state => state.user.proxyId,
   userType: state => state.user.userType,
-  userId: state => state.user.userId
+  userId: state => state.user.userId,
+  resourceIds: state => state.user.resourceIds
 }
 export default getters

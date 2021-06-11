@@ -205,7 +205,6 @@
 <script>
 import { indexdata, indextable } from "@/api/api";
 import countTo from "vue-count-to";
-
 export default {
   data() {
     return {
@@ -294,7 +293,7 @@ export default {
     //方法
   },
   mounted: function() {
-    console.log(this.$route.query.id);
+    console.log(this.$store);
 
     this.ajaxdata.proxyId = this.$store.state.user.proxyId;
     this.table();
@@ -316,7 +315,10 @@ export default {
         this.waiting[3].sj = data.cardRecoveryReviewCount; //待回收台卡
       })
       .catch(r => {
-        this.$message.error("服务器出错");
+        this.$notify.error({
+          title: "错误",
+          message: "服务器出错"
+        });
       });
   }
 };

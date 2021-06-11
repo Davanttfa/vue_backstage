@@ -1,127 +1,126 @@
 <template>
-  <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <div class="loginimgbox">
-        <img class="loginimg" src="../../img/xlyzlogin.png" alt="">  
-      </div> 
-      <h3 class="title">欢迎登录 小鹿有哲！</h3>
-      <el-form-item prop="username" class="logininput">
-        <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
-      </el-form-item>
-      <el-form-item prop="password" class="logininput">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :type="pwdType"
-          v-model="loginForm.password"
-          name="password"
-          auto-complete="on"
-          placeholder="password"
-          @keyup.enter.native="handleLogin" />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye" />
-        </span>
-      </el-form-item>
-      <el-form-item>
-        <el-button :loading="loading" class="login-button" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          登录！
-        </el-button>
-      </el-form-item>
-      <!-- <div class="tips">
+    <div class="login-container">
+        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+            <div class="loginimgbox">
+                <img class="loginimg" src="../../img/xlyzlogin.png" alt="">
+            </div>
+            <h3 class="title">欢迎登录 小鹿有哲！</h3>
+            <el-form-item prop="username" class="logininput">
+                <span class="svg-container svg-container_login">
+                    <svg-icon icon-class="user" />
+                </span>
+                <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
+            </el-form-item>
+            <el-form-item prop="password" class="logininput">
+                <span class="svg-container">
+                    <svg-icon icon-class="password" />
+                </span>
+                <el-input :type="pwdType" v-model="loginForm.password" name="password" auto-complete="on" placeholder="password" @keyup.enter.native="handleLogin" />
+                <span class="show-pwd" @click="showPwd">
+                    <svg-icon icon-class="eye" />
+                </span>
+            </el-form-item>
+            <el-form-item>
+                <el-button :loading="loading" class="login-button" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
+                    登录！
+                </el-button>
+            </el-form-item>
+            <!-- <div class="tips">
         <span style="margin-right:20px;">账号: admin</span>
         <span> 密码: admin</span>
       </div> -->
-    </el-form>
-  </div>
+        </el-form>
+    </div>
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
+import { isvalidUsername } from "@/utils/validate";
 
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     const validateUsername = (rule, value, callback) => {
       // if (!isvalidUsername(value)) {
-      if (value=='') {
-        callback(new Error('请输入正确的用户名'))
+      if (value == "") {
+        callback(new Error("请输入正确的用户名"));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     const validatePass = (rule, value, callback) => {
       if (value.length < 5) {
-        callback(new Error('密码不能小于5位'))
+        callback(new Error("密码不能小于5位"));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       loginForm: {
-        username: '猪猪侠',
-        password: '123456'
+        username: "猪猪侠",
+        password: "123456"
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePass }]
+        username: [
+          { required: true, trigger: "blur", validator: validateUsername }
+        ],
+        password: [{ required: true, trigger: "blur", validator: validatePass }]
       },
       loading: false,
-      pwdType: 'password',
+      pwdType: "password",
       redirect: undefined
-    }
+    };
   },
   watch: {
     $route: {
       handler: function(route) {
-        this.redirect = route.query && route.query.redirect
+        this.redirect = route.query && route.query.redirect;
       },
       immediate: true
     }
   },
   methods: {
     showPwd() {
-      if (this.pwdType === 'password') {
-        this.pwdType = ''
+      if (this.pwdType === "password") {
+        this.pwdType = "";
       } else {
-        this.pwdType = 'password'
+        this.pwdType = "password";
       }
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
-          this.$store.dispatch('Login', this.loginForm).then(() => {
-            this.loading = false
-            //  this.$message({
-            //   message: '登录成功，小鹿有哲欢迎您',
-            //   type: 'success'
-            // });
-             this.$notify({
-              title: '登录成功',
-              message: '小鹿有哲欢迎您',
-              type: 'success'
+          this.loading = true;
+          this.$store
+            .dispatch("Login", this.loginForm)
+            .then(() => {
+              this.loading = false;
+              //  this.$message({
+              //   message: '登录成功，小鹿有哲欢迎您',
+              //   type: 'success'
+              // });
+              //   this.$notify({
+              //     title: "登录成功",
+              //     message: "小鹿有哲欢迎您",
+              //     type: "success"
+              //   });
+              this.$router.push({ path: this.redirect || "/" });
+            })
+            .catch(() => {
+              this.loading = false;
             });
-            this.$router.push({ path: this.redirect || '/' })
-          }).catch(() => {
-            this.loading = false
-          })
-        }else{
-          console.log('error submit!!')
-          return false
+        } else {
+          console.log("error submit!!");
+          return false;
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg:#fff;
-$light_gray:#eee;
+$bg: #fff;
+$light_gray: #eee;
 
 /* reset element-ui css */
 .login-container {
@@ -138,8 +137,8 @@ $light_gray:#eee;
       color: #000;
       height: 47px;
       &:-webkit-autofill {
-       box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: #fff !important;
+        box-shadow: 0 0 0px 1000px $bg inset !important;
+        // -webkit-text-fill-color: #fff !important;
       }
     }
   }
@@ -150,19 +149,18 @@ $light_gray:#eee;
     color: #454545;
   }
 }
-
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#fff;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #fff;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 .login-container {
   position: fixed;
   height: 100%;
   width: 100%;
   background-color: $bg;
- background:url(../../img/login.jpg);
+  background: url(../../img/login.jpg);
   .login-form {
     position: absolute;
     left: 0;
@@ -195,11 +193,10 @@ $light_gray:#eee;
   .title {
     font-size: 16px;
     font-weight: 400;
-    color:#2dd0cf;
+    color: #2dd0cf;
     margin: 0px auto 40px auto;
     text-align: center;
     font-weight: bold;
-
   }
   .show-pwd {
     position: absolute;
@@ -211,19 +208,19 @@ $light_gray:#eee;
     user-select: none;
   }
 }
-.loginimg{
-   margin: auto
+.loginimg {
+  margin: auto;
 }
-.loginimgbox{
-      text-align: center;
-      margin-bottom:20px;
-      margin-top:50px
+.loginimgbox {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
 }
-.logininput{
-      background:#fff;
+.logininput {
+  background: #fff;
 }
-.login-button{
-   background:#00CCCB;
-   border:1px #2dd0cf solid
+.login-button {
+  background: #00cccb;
+  border: 1px #2dd0cf solid;
 }
 </style>

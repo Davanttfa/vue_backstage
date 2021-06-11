@@ -1,88 +1,88 @@
 <template>
-  <div class="cdlbox shopindex">
-    <div class="shopindexbanner">
-      <img :src="shopbanner" alt="">
-    </div>
-    <div class="shopindexewm">
-      <el-row style="width:900px;margin: auto;">
-        <el-col :span="10">
-          <div class="grid-content bg-purple grid-content1">
-            <div class="qrcode">
-              <div id="qrcode"></div>
-            </div>
-            <div class='buttonbox'>
-              <button class="dowerweima" @click="savePic()">下载二维码</button>
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="14">
-          <div class="grid-content bg-purple-light copyljboxtight">
-            <div class="copyljbox">
-              <div id="yonghuname">
-                业务员:{{$store.state.user.account}}
-              </div>
-              <div style="font-size: 16px;">我的二维码及邀请链接</div>
-              <input id="copyurl" class="inputerweima" type="text" :value="qdcodeurl">
-            </div>
-            <div class='buttonbox2' style="margin-top:20px">
-              <button class="dowerweima" v-clipboard:copy="qdcodeurl" v-clipboard:success="onCopy" v-clipboard:error="onError">
-                复制链接
-              </button>
-            </div>
-
-          </div>
-        </el-col>
-      </el-row>
-    </div>
-    <div class="shopindextablebox">
-      <div class="ADOrdDet_head">
-        <img style="width: 20px;margin-right: 10px;vertical-align: middle;" :src="tableicon" alt="">
-             邀请列表
-             <div class="zglht1-but lyzg2-btn" style="float: right;">
-             </div>
-      </div>
-      <div class="shopindextable">
-        <el-table ref="multipleTable" border :data="tableData3" tooltip-effect="dark" style="width: 100%" :default-sort="{prop: 'date', order: 'descending'}">
-          <el-table-column type="index" label="序号" width="50px">
-          </el-table-column>
-          <el-table-column prop="shopId" label="门店ID" width="70">
-          </el-table-column>
-          <el-table-column prop="name" label="登录账号">
-          </el-table-column>
-          <el-table-column prop="operateUserName" label="邀请人">
-          </el-table-column>
-          <el-table-column prop="enterTime" label="入驻时间">
-            <template slot-scope="scope">
-              <div :data-id=scope.row.enterTime>{{ scope.row.enterTime| dateformat('YYYY-MM-DD') }}</div>
-            </template>
-          </el-table-column>
-          <el-table-column prop="reviewStatus" label="审核状态">
-          </el-table-column>
-          <el-table-column prop="contact" label="联系人">
-          </el-table-column>
-          <el-table-column prop="address" label="门店地址">
-          </el-table-column>
-          <el-table-column prop="phone" label="电话">
-          </el-table-column>
-          <el-table-column prop="cardNumber" label="申请台卡书">
-          </el-table-column>
-          <el-table-column prop="bindCardNumber" label="已绑定数量">
-          </el-table-column>
-          <el-table-column prop="" label="操作">
-            <template slot-scope="scope">
-              <div>
-                <span class="caozuo" @click="shopurlClick(scope.row.shopId)">补充门店信息</span>
-              </div>
-            </template>
-          </el-table-column>
-        </el-table>
-        <div class="block" style="margin-top: 30px;">
-          <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="pageNumbercs" :page-sizes="pageSizesList" :page-size="ajaxdata.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="totalDataNumber">
-          </el-pagination>
+    <div class="cdlbox shopindex">
+        <div class="shopindexbanner">
+            <img :src="shopbanner" alt="">
         </div>
-      </div>
+        <div class="shopindexewm">
+            <el-row style="width:900px;margin: auto;">
+                <el-col :span="10">
+                    <div class="grid-content bg-purple grid-content1">
+                        <div class="qrcode">
+                            <div id="qrcode"></div>
+                        </div>
+                        <div class='buttonbox'>
+                            <button class="dowerweima" @click="savePic()">下载二维码</button>
+                        </div>
+                    </div>
+                </el-col>
+                <el-col :span="14">
+                    <div class="grid-content bg-purple-light copyljboxtight">
+                        <div class="copyljbox">
+                            <div id="yonghuname">
+                                业务员:{{$store.state.user.account}}
+                            </div>
+                            <div style="font-size: 16px;">我的二维码及邀请链接</div>
+                            <input id="copyurl" class="inputerweima" type="text" :value="qdcodeurl">
+                        </div>
+                        <div class='buttonbox2' style="margin-top:20px">
+                            <button class="dowerweima" v-clipboard:copy="qdcodeurl" v-clipboard:success="onCopy" v-clipboard:error="onError">
+                                复制链接
+                            </button>
+                        </div>
+
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+        <div class="shopindextablebox">
+            <div class="ADOrdDet_head">
+                <img style="width: 20px;margin-right: 10px;vertical-align: middle;" :src="tableicon" alt="">
+                邀请列表
+                <div class="zglht1-but lyzg2-btn" style="float: right;">
+                </div>
+            </div>
+            <div class="shopindextable">
+                <el-table ref="multipleTable" border :data="tableData3" tooltip-effect="dark" style="width: 100%" :default-sort="{prop: 'date', order: 'descending'}">
+                    <el-table-column type="index" label="序号" width="50px">
+                    </el-table-column>
+                    <el-table-column prop="shopId" label="门店ID" width="70">
+                    </el-table-column>
+                    <el-table-column prop="name" label="登录账号">
+                    </el-table-column>
+                    <el-table-column prop="operateUserName" label="邀请人">
+                    </el-table-column>
+                    <el-table-column prop="enterTime" label="入驻时间">
+                        <template slot-scope="scope">
+                            <div :data-id=scope.row.enterTime>{{ scope.row.enterTime| dateformat('YYYY-MM-DD') }}</div>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="reviewStatus" label="审核状态">
+                    </el-table-column>
+                    <el-table-column prop="contact" label="联系人">
+                    </el-table-column>
+                    <el-table-column prop="address" label="门店地址">
+                    </el-table-column>
+                    <el-table-column prop="phone" label="电话">
+                    </el-table-column>
+                    <el-table-column prop="cardNumber" label="申请台卡书">
+                    </el-table-column>
+                    <el-table-column prop="bindCardNumber" label="已绑定数量">
+                    </el-table-column>
+                    <el-table-column prop="" label="操作">
+                        <template slot-scope="scope">
+                            <div>
+                                <span class="caozuo" @click="shopurlClick(scope.row.shopId)">补充门店信息</span>
+                            </div>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <div class="block" style="margin-top: 30px;">
+                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="pageNumbercs" :page-sizes="pageSizesList" :page-size="ajaxdata.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="totalDataNumber">
+                    </el-pagination>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -91,11 +91,12 @@ import QRCode from "qrcodejs2";
 export default {
   data() {
     return {
-       pageNumbercs: 0,//初始页码
-      pageSize: 10,//初始分页数量
-      pageSizesList: [10, 15, 20, 30, 50],//一页多少数据
-      totalDataNumber: 0,//总数据
-      ajaxdata: {// 请求数据的申请
+      pageNumbercs: 0, //初始页码
+      pageSize: 10, //初始分页数量
+      pageSizesList: [10, 15, 20, 30, 50], //一页多少数据
+      totalDataNumber: 0, //总数据
+      ajaxdata: {
+        // 请求数据的申请
         proxyId: this.$store.state.user.proxyId,
         pageSize: 10,
         pageNumber: 0
@@ -138,7 +139,10 @@ export default {
           this.totalDataNumber = response.data.total;
         })
         .catch(response => {
-          console.log(response);
+          this.$notify.error({
+            title: "错误",
+            message: "服务器出错"
+          });
         });
     },
     savePic() {

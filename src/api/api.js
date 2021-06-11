@@ -200,6 +200,38 @@ export function areaset(id) { //获取区
     }
   })
 }
+export function shopbusinessajax(id) { //获取商圈
+  return request({
+    url: '/proxy/lower/shop/' + id,
+    method: 'get',
+    params: {
+      pageNumber: 0,
+      pageSize: 35,
+    }
+  })
+}
+export function shopindustry() { //行业
+  return request({
+    url: '/proxy/lower/shop/industry',
+    method: 'get',
+    params: {
+      pageNumber: 0,
+      pageSize: 50
+    }
+  })
+}
+export function shopindustrybusiness(id) { //子行业
+  return request({
+    url: '/proxy/lower/shop/industry/business',
+    method: 'get',
+    params: {
+      pageNumber: 0,
+      pageSize: 50,
+      industryId: id
+    }
+  })
+}
+
 export function userfuzeren(data) { //负责人下拉列表
   return request({
     url: '/proxy/lower/operate/user/list',
@@ -259,14 +291,14 @@ export function reachxqtable(data) { //达标记录详情table
     params: data
   })
 }
-export function timingajax(data) { //达标记录详情table
+export function timingajax(data) { //获取time
   return request({
     url: '/proxy/lower/shop/time',
     method: 'get',
     params: data
   })
 }
-export function timeshez(shopId) { //达标记录详情table
+export function timeshez(shopId) { //time设置
   return request({
     url: '/proxy/lower/shop/' + shopId + '/time',
     method: 'get',
@@ -279,6 +311,107 @@ export function timecq(data) { //重启休眠时间提交
     params: data
   })
 }
+export function Dividendindextop(proxyId) { //商户分红总览top数据
+  return request({
+    url: '/proxy/lower/finance/index',
+    method: 'get',
+    params: {
+      proxyId: proxyId
+
+    }
+  })
+}
+export function DividendindexmyChart(data) { //商户分红总览图标
+  return request({
+    url: '/proxy/lower/finance/Summary',
+    method: 'get',
+    params: data
+  })
+}
+export function Dividendindextable(data) { //商户分红总览图标
+  return request({
+    url: '/proxy/lower/finance/recore/withdraw',
+    method: 'get',
+    params: data
+  })
+}
+export function cwxxindexsj(id) { //商户分红总览图标
+  return request({
+    url: '/account/' + id,
+    method: 'get',
+  })
+}
+export function phonecode(data) { //财务信息获取手机验证码
+  return request({
+    url: '/account/code',
+    method: 'get',
+    params: data
+  })
+}
+
+export function Dividendglfh(data) { //财务信息获取手机验证码
+  return request({
+    url: '/proxy/lower/finance/create/bill',
+    method: 'get',
+    params: data
+  })
+}
+export function predict(data) { //分红账单获取支出预算
+  return request({
+    url: '/proxy/lower/finance/expendAmount',
+    method: 'get',
+    params: data
+  })
+}
+export function financeprice(data) { //分红账单获取默认价格
+  return request({
+    url: '/proxy/lower/finance/price',
+    method: 'get',
+    params: data
+  })
+}
+export function financebill(data) { //分红账单当月全部保存
+  return request({
+    url: '/proxy/lower/finance/bill',
+    method: 'post',
+    params: data
+  })
+}
+export function proxylowershopId(shopId) { //商户基础信息
+  return request({
+    url: '/proxy/lower/' + shopId + '/shop/details',
+    method: 'get',
+  })
+}
+export function shoplevel() { //获取商户等级
+  return request({
+    url: '/proxy/lower/shop/level',
+    method: 'get',
+    params: {
+      pageNumber: 0,
+      pageSize: 35,
+    }
+  })
+}
+export function shopcard(data) { //台卡详情table
+  return request({
+    url: '/proxy/lower/card/list',
+    method: 'get',
+    params: data
+  })
+}
+export function shopincome(data) { //收入明细table
+  return request({
+    url: '/proxy/lower/shop/' + data.shopId + '/income',
+    method: 'get',
+    params: data
+  })
+}
+
+
+
+
+
 
 
 
@@ -346,6 +479,52 @@ export function recalls(data) { //撤销工单
 export function reviewinstall(data) { //审核工单
   return request({
     url: '/proxy/lower/work/order/install/review',
+    method: 'put',
+    data: data
+  })
+}
+export function accountuesid(data) { //提交财务信息
+  return request({
+    url: '/account/' + data.userId,
+    method: 'put',
+    data: data
+  })
+}
+export function shopbillsend(id) { //分红管理发送明细
+  return request({
+    url: '/proxy/lower/finance/shop/bill/send',
+    method: 'put',
+    data: {
+      id: id
+    }
+  })
+}
+export function shopbilltransfer(id) { //分红管理发送明细
+  return request({
+    url: '/proxy/lower/finance/shop/bill/transfer',
+    method: 'put',
+    data: {
+      id: id
+    }
+  })
+}
+export function shopreview(data) { //门店审核
+  return request({
+    url: '/proxy/lower/shop/review',
+    method: 'put',
+    data: data
+  })
+}
+export function shopput(data) { //门店信息编辑
+  return request({
+    url: '/proxy/lower/shop',
+    method: 'put',
+    data: data
+  })
+}
+export function cardnumber(data) { //台卡桌号
+  return request({
+    url: '/proxy/lower/card/number',
     method: 'put',
     data: data
   })
