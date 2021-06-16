@@ -293,8 +293,10 @@ export default {
     //方法
   },
   mounted: function() {
-    console.log(this.$store);
+    // this.$router.reload();
+    console.log(this.$router);
 
+    console.log(this.$store);
     this.ajaxdata.proxyId = this.$store.state.user.proxyId;
     this.table();
     //挂载结束状态

@@ -6,7 +6,7 @@ export function getToken(TokenKey) {
   return Cookies.get(TokenKey)
 }
 
-export function setToken(TokenKey,token) {
+export function setToken(TokenKey, token) {
   return Cookies.set(TokenKey, token)
 }
 

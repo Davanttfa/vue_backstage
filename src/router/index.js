@@ -25,21 +25,27 @@ import store from "../store/index";
 // console.log(store.getters.userType);
 // console.log(store.getters.resourceIds);
 var resourceId = store.getters.resourceIds
-resourceId = resourceId.split(",")
-console.log(resourceId);
-let qxfun = (id) => {
-  let zt = true
-  resourceId.forEach(function (e) {
-    if (e == id) {
-      zt = false
-    } else if (store.getters.userType == 'PROXY') {
-      zt = false
-    }
-  })
-  return zt
+if (resourceId != undefined && resourceId != null) {
+  resourceId = resourceId.split(",")
+  var qxfun = (id) => {
+    let zt = true
+    resourceId.forEach(function (e) {
+      if (e == id) {
+        zt = false
+      } else if (store.getters.userType == 'PROXY1') {
+        zt = false
+      }
+    })
+    return zt
+  }
+
+} else {
+  var qxfun = (id) => {
+    let zt = true
+    return zt
+  }
 }
 
-console.log(qxfun(8));
 
 export const constantRouterMap = [{
     path: "/login",

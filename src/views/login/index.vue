@@ -104,6 +104,7 @@ export default {
               //     type: "success"
               //   });
               this.$router.push({ path: this.redirect || "/" });
+              this.$router.go(0);
             })
             .catch(() => {
               this.loading = false;
